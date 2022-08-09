@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>1024</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <widget class="QPushButton" name="buttonplayGame1Backward">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>900</y>
+     <width>100</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(32, 74, 135);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>assets/images/left-arrow.png</normaloff>assets/images/left-arrow.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>100</width>
+     <height>50</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="buttonplayGame1ReturnMain">
+   <property name="geometry">
+    <rect>
+     <x>540</x>
+     <y>970</y>
+     <width>100</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: black;
+background-color: rgb(20, 125, 17);</string>
+   </property>
+   <property name="text">
+    <string>SALIR (X)</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="buttonplayGame1Run">
+   <property name="geometry">
+    <rect>
+     <x>540</x>
+     <y>900</y>
+     <width>100</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(32, 74, 135);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>assets/images/play-button-arrowhead.png</normaloff>assets/images/play-button-arrowhead.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>100</width>
+     <height>50</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="buttonplayGame1Forward">
+   <property name="geometry">
+    <rect>
+     <x>1100</x>
+     <y>900</y>
+     <width>100</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(32, 74, 135);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>assets/images/right-arrow.png</normaloff>assets/images/right-arrow.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>100</width>
+     <height>50</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QLabel" name="imagebackground">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1280</width>
+     <height>889</height>
+    </rect>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/prefijoNuevo/images/game1_play.png);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="misc">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>889</y>
+     <width>1280</width>
+     <height>135</height>
+    </rect>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(237, 212, 0);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="canvas">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>200</y>
+     <width>600</width>
+     <height>600</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Abyssinica SIL</family>
+     <pointsize>46</pointsize>
+     <weight>9</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0 rgba(255, 235, 235, 206), stop:0.35 rgba(255, 188, 188, 80), stop:0.4 rgba(255, 162, 162, 80), stop:0.425 rgba(255, 132, 132, 156), stop:0.44 rgba(252, 128, 128, 80), stop:1 rgba(255, 255, 255, 0)), 53, 102);
+font: 75 46pt &quot;Abyssinica SIL&quot;;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="textFormat">
+    <enum>Qt::AutoText</enum>
+   </property>
+   <property name="margin">
+    <number>5</number>
+   </property>
+  </widget>
+  <zorder>misc</zorder>
+  <zorder>buttonplayGame1Backward</zorder>
+  <zorder>buttonplayGame1ReturnMain</zorder>
+  <zorder>buttonplayGame1Run</zorder>
+  <zorder>buttonplayGame1Forward</zorder>
+  <zorder>imagebackground</zorder>
+  <zorder>canvas</zorder>
+ </widget>
+ <resources>
+  <include location="assets/source.qrc"/>
+ </resources>
+ <connections/>
+</ui>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>1024</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QPushButton" name="buttonGame1Play">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>900</y>
+     <width>100</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: black;
+background-color: rgb(255, 0, 221);</string>
+   </property>
+   <property name="text">
+    <string>PLAY (P)</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="buttonGame1ReturnMain">
+   <property name="geometry">
+    <rect>
+     <x>600</x>
+     <y>900</y>
+     <width>100</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: black;
+background-color: rgb(20, 125, 17);</string>
+   </property>
+   <property name="text">
+    <string>VOLVER (X)</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="buttonGame1Config">
+   <property name="geometry">
+    <rect>
+     <x>1090</x>
+     <y>900</y>
+     <width>131</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: black;
+background-color: rgb(05, 80, 221);</string>
+   </property>
+   <property name="text">
+    <string>CONFIGURAR (C)</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1280</width>
+     <height>1024</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/prefijoNuevo/images/game1_main.png);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1280</width>
+     <height>1024</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>:/prefijoNuevo/game1_main.png</pixmap>
+   </property>
+  </widget>
+  <zorder>label_2</zorder>
+  <zorder>label</zorder>
+  <zorder>buttonGame1Play</zorder>
+  <zorder>buttonGame1ReturnMain</zorder>
+  <zorder>buttonGame1Config</zorder>
+ </widget>
+ <resources>
+  <include location="assets/source.qrc"/>
+ </resources>
+ <connections/>
+</ui>

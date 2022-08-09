@@ -1,0 +1,38 @@
+{
+    "Node0": {
+        "Color": "#FF0000",
+        "Emotion": "ENFADADO",
+        "Buzzer": "ON",
+        "Vibration": "ON"
+    },
+    "Node1": {
+        "Color": "#00FF00",
+        "Emotion": "FELIZ",
+        "Buzzer": "ON",
+        "Vibration": "OFF"
+    },
+    "Node2": {
+        "Color": "#00FF00",
+        "Emotion": "FELIZ",
+        "Buzzer": "ON",
+        "Vibration": "ON"
+    },
+    "Node3": {
+        "Color": "#00FF00",
+        "Emotion": "FELIZ",
+        "Buzzer": "ON",
+        "Vibration": "OFF"
+    },
+    "Node4": {
+        "Color": "#8F5902",
+        "Emotion": "FELIZ",
+        "Buzzer": "OFF",
+        "Vibration": "OFF"
+    },
+    "Node5": {
+        "Color": "#00FF00",
+        "Emotion": "TRISTE",
+        "Buzzer": "ON",
+        "Vibration": "OFF"
+    }
+}

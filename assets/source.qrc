@@ -1,0 +1,17 @@
+<RCC>
+  <qresource prefix="prefijoNuevo">
+    <file>images/game1_play.png</file>
+    <file>images/main_menu_image.png</file>
+    <file>images/game1_config.png</file>
+    <file>images/game1_main.png</file>
+    <file>images/Bone-PNG-Image.png</file>
+    <file>images/Pineapple-Free-Download-PNG.png</file>
+    <file>images/Cheese-PNG.png</file>
+    <file>images/Carrot-PNG.png</file>
+    <file>images/play.png</file>
+    <file>images/replay.png</file>
+    <file>images/play-button-arrowhead.png</file>
+    <file>images/left-arrow.png</file>
+    <file>images/right-arrow.png</file>
+  </qresource>
+</RCC>

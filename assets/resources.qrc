@@ -1,0 +1,12 @@
+<RCC>
+  <qresource prefix="images">
+    <file>images/right-arrow.png</file>
+    <file>images/replay.png</file>
+    <file>images/play.png</file>
+    <file>images/play-button-arrowhead.png</file>
+    <file>images/main_menu_image.png</file>
+    <file>images/left-arrow.png</file>
+    <file>images/game1_main.png</file>
+    <file>images/game1_config.png</file>
+  </qresource>
+</RCC>
