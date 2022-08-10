@@ -4,8 +4,8 @@ from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog
 from PyQt5.QtCore import QCoreApplication
-from PyQt5.QtGui import * 
-from PyQt5.QtCore import * 
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
 from numpy import False_
 from assets import source
 import json
@@ -44,7 +44,6 @@ class Game1Window(QDialog):
         self.buttonGame1Config.clicked.connect(self.gotoConfig)
         self.buttonGame1Play.clicked.connect(self.gotoPlay)
         self.InitDefaultValues()
-
 
     def gotoPlay(self):
         playgame1window = PlayGame1Window()
@@ -190,7 +189,7 @@ class ConfigGame1Window(QDialog):
         elif button.text() == 'BOTÓN 3':
             self.NodeSelected = 2
         elif button.text() == 'BOTÓN 4':
-            self.NodeSelected = 3    
+            self.NodeSelected = 3
         elif button.text() == 'BOTÓN 5':
             self.NodeSelected = 4
         elif button.text() == 'BOTÓN 6':
@@ -203,9 +202,10 @@ class ConfigGame1Window(QDialog):
         print(self.NodeConfig['Node' + str(self.NodeSelected)]['Emotion'])
 
         self.buttonColorNode.setStyleSheet(
-                "background-color:%s" % self.NodeConfig['Node' + str(self.NodeSelected)]['Color'])
-        self.ColorSelected = self.NodeConfig['Node' + str(self.NodeSelected)]['Color']
-        
+            "background-color:%s" % self.NodeConfig['Node' + str(self.NodeSelected)]['Color'])
+        self.ColorSelected = self.NodeConfig['Node' +
+                                             str(self.NodeSelected)]['Color']
+
         if self.NodeConfig['Node' + str(self.NodeSelected)]['Buzzer'] == "OFF":
             self.checkBoxBuzzer.setChecked(False)
         elif self.NodeConfig['Node' + str(self.NodeSelected)]['Buzzer'] == "ON":
@@ -214,12 +214,16 @@ class ConfigGame1Window(QDialog):
             self.checkBoxVibration.setChecked(False)
         elif self.NodeConfig['Node' + str(self.NodeSelected)]['Vibration'] == "ON":
             self.checkBoxVibration.setChecked(True)
-       
-        self.buttonEmotionActual.setText( self.NodeConfig['Node' + str(self.NodeSelected)]['Emotion'])
-        
-        self.EmotionSelected = self.NodeConfig['Node' + str(self.NodeSelected)]['Emotion']
-        self.VibrationStatus =self.NodeConfig['Node' + str(self.NodeSelected)]['Vibration']
-        self.BuzzerStatus = self.NodeConfig['Node' + str(self.NodeSelected)]['Buzzer']
+
+        self.buttonEmotionActual.setText(
+            self.NodeConfig['Node' + str(self.NodeSelected)]['Emotion'])
+
+        self.EmotionSelected = self.NodeConfig['Node' +
+                                               str(self.NodeSelected)]['Emotion']
+        self.VibrationStatus = self.NodeConfig['Node' +
+                                               str(self.NodeSelected)]['Vibration']
+        self.BuzzerStatus = self.NodeConfig['Node' +
+                                            str(self.NodeSelected)]['Buzzer']
 
     def selectColor(self):
         button = self.sender()
@@ -276,20 +280,23 @@ class ConfigGame1Window(QDialog):
         try:
             with open('Settings.json',) as fp:
                 json_data = json.load(fp)
-                json_data['Node' + str(self.NodeSelected)]['Color']= self.ColorSelected
-                json_data['Node' + str(self.NodeSelected)]['Vibration']= self.VibrationStatus
-                json_data['Node' + str(self.NodeSelected)]['Buzzer']= self.BuzzerStatus
-                json_data['Node' + str(self.NodeSelected)]['Emotion']= self.EmotionSelected
+                json_data['Node' + str(self.NodeSelected)
+                          ]['Color'] = self.ColorSelected
+                json_data['Node' + str(self.NodeSelected)
+                          ]['Vibration'] = self.VibrationStatus
+                json_data['Node' + str(self.NodeSelected)
+                          ]['Buzzer'] = self.BuzzerStatus
+                json_data['Node' + str(self.NodeSelected)
+                          ]['Emotion'] = self.EmotionSelected
             with open('Settings.json', 'w') as fp:
                 json.dump(json_data, fp, indent=4)
                 fp.close()
         except IOError:
             print('File not found, error')
-        
+
         # self.HideAllWidgets()
         # widget.setCurrentIndex(1)
 
-    
     def gotoMain(self):
         self.ColorSelected = "#000000"
         self.VibrationStatus = "OFF"
@@ -298,8 +305,10 @@ class ConfigGame1Window(QDialog):
         self.HideAllWidgets()
         widget.setCurrentIndex(1)
 
+
 class PlayGame1Window(QDialog):
 
+    Num_Food_images = 3
     Food_images = ['Carrot-PNG.png', 'Cheese-PNG.png', 'Bone-PNG-Image.png']
     Index_images = 0
 
@@ -311,27 +320,45 @@ class PlayGame1Window(QDialog):
         self.buttonplayGame1Run.clicked.connect(self.gotoPlay)
         self.buttonplayGame1Forward.clicked.connect(self.gotoPlay)
         self.canvas.setText("VAMOS A DIVERTIRNOS")
-        self.canvas.show();
-
+        self.canvas.show()
 
     def gotoPlay(self):
+
         button = self.sender()
+
         if button.objectName() == 'buttonplayGame1Run':
+
             self.canvas.setText(" ")
-            self.random_index = random.randint(0,len(self.Food_images)-1)
+            self.random_index = random.randint(0, len(self.Food_images)-1)
             self.Index_images = self.random_index
-            self.canvas.setStyleSheet("image : url("+":/prefijoNuevo/images/" + (self.Food_images[self.random_index]) + ")")
+            self.canvas.setStyleSheet(
+                "image : url("+":/prefijoNuevo/images/" + (self.Food_images[self.random_index]) + ")")
+
+        if button.objectName() == 'buttonplayGame1Backward':
+
+            if (self.Index_images == 0):
+                self.canvas.setStyleSheet(
+                "image : url("+":/prefijoNuevo/images/" + (self.Food_images[self.Index_images]) + ")")
+            else :
+                self.Index_images=self.Index_images-1
+                self.canvas.setStyleSheet(
+                "image : url("+":/prefijoNuevo/images/" + (self.Food_images[self.Index_images]) + ")")
 
 
-        # if button.objectName() == 'buttonplayGame1Backward': 
+        if button.objectName() == 'buttonplayGame1Forward':
 
-        # if button.objectName() == 'buttonplayGame1Forward': 
-
+            if (self.Index_images >= len(self.Food_images)-1):
+                self.canvas.setStyleSheet(
+                "image : url("+":/prefijoNuevo/images/" + (self.Food_images[self.Index_images]) + ")")
+            else:
+                self.Index_images=self.Index_images+1
+                self.canvas.setStyleSheet(
+                "image : url("+":/prefijoNuevo/images/" + (self.Food_images[self.Index_images]) + ")")
 
     def gotoMain(self):
+        self.canvas.setStyleSheet(" background-color: rgb(qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0 rgba(255, 235, 235, 206), stop:0.35 rgba(255, 188, 188, 80), stop:0.4 rgba(255, 162, 162, 80), stop:0.425 rgba(255, 132, 132, 156), stop:0.44 rgba(252, 128, 128, 80), stop:1 rgba(255, 255, 255, 0)), 53, 102);")
         widget.setCurrentIndex(1)
 
-    
 
 app = QApplication(sys.argv)
 widget = QtWidgets.QStackedWidget()
