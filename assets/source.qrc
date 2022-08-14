@@ -4,11 +4,17 @@
     <file>images/main_menu_image.png</file>
     <file>images/game1_config.png</file>
     <file>images/game1_main.png</file>
-    <file>images/Bone-PNG-Image.png</file>
-    <file>images/Pineapple-Free-Download-PNG.png</file>
-    <file>images/Cheese-PNG.png</file>
-    <file>images/Carrot-PNG.png</file>
     <file>images/play.png</file>
+    <file>images/Bone.png</file>
+    <file>images/Carrot.png</file>
+    <file>images/Acorn.png</file>
+    <file>images/Milk.png</file>
+    <file>images/Worm.png</file>
+    <file>images/Cheese.png</file>
+    <file>images/Grain.png</file>
+    <file>images/Grass.png</file>
+    <file>images/Fish.png</file>
+    <file>images/Apple.png</file>
     <file>images/replay.png</file>
     <file>images/play-button-arrowhead.png</file>
     <file>images/left-arrow.png</file>

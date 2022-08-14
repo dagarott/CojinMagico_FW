@@ -23,9 +23,10 @@ class MainWindow(QDialog):
         self.buttonExitApp.clicked.connect(QCoreApplication.instance().quit)
 
     def gotoGame1(self):
-        game1window = Game1Window()
-        widget.addWidget(game1window)
-        widget.setCurrentIndex(1)
+        widget.setCurrentWidget(game1window)
+        # game1window = Game1Window()
+        # widget.addWidget(game1window)
+        # widget.setCurrentIndex(1)
 
 
 class Game1Window(QDialog):
@@ -44,24 +45,28 @@ class Game1Window(QDialog):
         self.buttonGame1Config.clicked.connect(self.gotoConfig)
         self.buttonGame1Play.clicked.connect(self.gotoPlay)
         self.InitDefaultValues()
+        # self.configgame1window = ConfigGame1Window()
+        # widget.addWidget(self.configgame1window)
+        # self.playgame1window = PlayGame1Window()
+        # widget.addWidget(self.playgame1window)
+
 
     def gotoPlay(self):
-        playgame1window = PlayGame1Window()
-        widget.addWidget(playgame1window)
-        widget.setCurrentIndex(3)
+        widget.setCurrentWidget(playgame1window)
+        # widget.setCurrentIndex(3)
 
     def gotoConfig(self):
-        configgame1window = ConfigGame1Window()
-        widget.addWidget(configgame1window)
-        widget.setCurrentIndex(2)
+        widget.setCurrentWidget(configgame1window)
+       # widget.setCurrentIndex(2)
 
     def gotoMain(self):
-        widget.setCurrentIndex(0)
+        widget.setCurrentWidget(mainwindow)
+        #widget.setCurrentIndex(0)
 
     def InitDefaultValues(self):
 
         try:
-            with open('Settings.json', 'r') as fp:
+            with open('Game1Settings.json', 'r') as fp:
                 self.NodeConfig = json.load(fp)
                 # for i in range(6):
                 #     print(self.NodeConfig['Node' + str(i)])
@@ -71,11 +76,12 @@ class Game1Window(QDialog):
             for i in range(6):
                 self.NodeConfigDefault['Node' + str(i)] = {
                     'Color': '#00FF00',
-                    'Emotion': 'FELIZ',
+                    'Feed': 'ZANAHORIA',
+                    'Feed_idx':'0',
                     'Buzzer': 'ON',
                     'Vibration': 'OFF',
                 }
-            with open('Settings.json', 'w') as f:
+            with open('Game1Settings.json', 'w') as f:
                 json.dump(self.NodeConfigDefault, f, indent=4)
 
 
@@ -83,7 +89,7 @@ class ConfigGame1Window(QDialog):
 
     Nodeconfig = {}
     NodeSelected = 0
-    EmotionList = ["FELIZ", "TRISTE", "ENFADADO",
+    FeedList = ["FELIZ", "TRISTE", "ENFADADO",
                    "SORPRENDIDO", "ASUSTADO", "AVERGONZADO", ]
     ColorSelected = "#000000"
     VibrationStatus = "OFF"
@@ -111,7 +117,7 @@ class ConfigGame1Window(QDialog):
         self.buttonSetColor8.clicked.connect(self.selectColor)
         self.checkBoxBuzzer.stateChanged.connect(self.stateBuzzer)
         self.checkBoxVibration.stateChanged.connect(self.stateVibration)
-        self.comboBoxEmotions.addItems(self.EmotionList)
+        self.comboBoxEmotions.addItems(self.FeedList)
         self.comboBoxEmotions.currentIndexChanged.connect(self.selectedEmotion)
         self.buttonConfigGame1Save.clicked.connect(self.saveConfig)
         self.LoadNodesConfig()
@@ -294,8 +300,9 @@ class ConfigGame1Window(QDialog):
         except IOError:
             print('File not found, error')
 
-        # self.HideAllWidgets()
+        self.HideAllWidgets()
         # widget.setCurrentIndex(1)
+        widget.setCurrentWidget(game1window)
 
     def gotoMain(self):
         self.ColorSelected = "#000000"
@@ -303,13 +310,13 @@ class ConfigGame1Window(QDialog):
         self.BuzzerStatus = "OFF"
         self.EmotionSelected = "none"
         self.HideAllWidgets()
-        widget.setCurrentIndex(1)
+        #widget.setCurrentIndex(1)
+        widget.setCurrentWidget(game1window)
 
 
 class PlayGame1Window(QDialog):
 
-    Num_Food_images = 3
-    Food_images = ['Carrot-PNG.png', 'Cheese-PNG.png', 'Bone-PNG-Image.png']
+    Food_images = ['Carrot.png', 'Cheese.png', 'Bone.png', 'Fish.png', 'Apple.png', 'Grain.png', 'Grass.png', 'Milk.png','Acorn.png','Worm.png']
     Index_images = 0
 
     def __init__(self):
@@ -364,8 +371,15 @@ app = QApplication(sys.argv)
 widget = QtWidgets.QStackedWidget()
 mainwindow = MainWindow()
 widget.addWidget(mainwindow)
+game1window = Game1Window()
+widget.addWidget(game1window)
+configgame1window = ConfigGame1Window()
+widget.addWidget(configgame1window)
+playgame1window = PlayGame1Window()
+widget.addWidget(playgame1window)
 widget.setFixedHeight(1024)
 widget.setFixedWidth(1280)
+widget.setCurrentWidget(mainwindow)
 widget.show()
 ColorNode = "none"
 StatusBuzzerNode = "disable"
