@@ -1,0 +1,44 @@
+{
+    "Node0": {
+        "Color": "#00FF00",
+        "Feed": "MANZANAS",
+        "Feed_idx": 4,
+        "Buzzer": "OFF",
+        "Vibration": "OFF"
+    },
+    "Node1": {
+        "Color": "#00FF00",
+        "Feed": "GUSANOS",
+        "Feed_idx": 9,
+        "Buzzer": "ON",
+        "Vibration": "ON"
+    },
+    "Node2": {
+        "Color": "#FF0000",
+        "Feed": "LECHE",
+        "Feed_idx": 7,
+        "Buzzer": "ON",
+        "Vibration": "ON"
+    },
+    "Node3": {
+        "Color": "#00FF00",
+        "Feed": "ZANAHORIAS",
+        "Feed_idx": 0,
+        "Buzzer": "ON",
+        "Vibration": "OFF"
+    },
+    "Node4": {
+        "Color": "#00FF00",
+        "Feed": "ZANAHORIAS",
+        "Feed_idx": 0,
+        "Buzzer": "ON",
+        "Vibration": "OFF"
+    },
+    "Node5": {
+        "Color": "#00FF00",
+        "Feed": "PESCADO",
+        "Feed_idx": 3,
+        "Buzzer": "ON",
+        "Vibration": "OFF"
+    }
+}

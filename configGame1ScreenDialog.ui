@@ -333,7 +333,7 @@
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_5">
     <item>
-     <widget class="QLabel" name="labelEmotionActual">
+     <widget class="QLabel" name="labelFeedActual">
       <property name="font">
        <font>
         <family>DejaVu Sans</family>
@@ -342,12 +342,12 @@
        </font>
       </property>
       <property name="text">
-       <string>EMOCION ACTUAL:</string>
+       <string>ALIMENTO ACTUAL:</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="buttonEmotionActual">
+     <widget class="QPushButton" name="buttonFeedActual">
       <property name="enabled">
        <bool>false</bool>
       </property>
@@ -521,7 +521,7 @@
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_7">
     <item>
-     <widget class="QLabel" name="labelSelectEmotion">
+     <widget class="QLabel" name="labelSelectFeed">
       <property name="font">
        <font>
         <family>DejaVu Sans</family>
@@ -533,7 +533,7 @@
        <enum>Qt::LeftToRight</enum>
       </property>
       <property name="text">
-       <string>SELECCIONA OTRA EMOCÍON:</string>
+       <string>SELECCIONA OTRO ALIMENTO:</string>
       </property>
       <property name="wordWrap">
        <bool>false</bool>
@@ -544,7 +544,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QComboBox" name="comboBoxEmotions"/>
+     <widget class="QComboBox" name="comboBoxFeed"/>
     </item>
    </layout>
   </widget>
