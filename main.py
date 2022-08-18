@@ -3,7 +3,7 @@ from tkinter import TRUE
 from PyQt5.uic import loadUi
 from PyQt5 import QtCore, QtWidgets, QtSerialPort, QtMultimedia
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog
-from PyQt5.QtCore import QCoreApplication
+from PyQt5.QtCore import QCoreApplication, QThread
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from numpy import False_
@@ -11,7 +11,12 @@ from assets import source
 import json
 from palette import PaletteGrid, PaletteHorizontal, PaletteVertical
 from toggleButton import Switch
-import random
+import random, time, threading
+from pygame import mixer
+
+
+
+
 
 
 class MainWindow(QDialog):
@@ -339,14 +344,16 @@ class PlayGame1Window(QDialog):
                    'Apple.png', 'Grain.png', 'Grass.png', 'Milk.png', 'Acorn.png', 'Worm.png']
     Index_images = 0
 
+    DelayDone= False
+
     def __init__(self):
         super(PlayGame1Window, self).__init__()
         loadUi("playGame1ScreenDialog.ui", self)
         self.buttonplayGame1ReturnMain.clicked.connect(self.gotoMain)
         self.buttonplayGame1Backward.clicked.connect(self.gotoPlay)
-        self.buttonplayGame1Run.clicked.connect(self.gotoPlay)
+        # self.buttonplayGame1Run.clicked.connect(self.gotoPlay)
         self.buttonplayGame1Forward.clicked.connect(self.gotoPlay)
-        self.canvas.setText("VAMOS A DIVERTIRNOS")
+        # self.canvas.setText("VAMOS A DIVERTIRNOS")
         self.canvas.show()
         self.serial = QtSerialPort.QSerialPort(
             '/dev/ttyUSB0',
@@ -356,16 +363,18 @@ class PlayGame1Window(QDialog):
         if not self.serial.isOpen():
             self.serial.open(QtCore.QIODevice.ReadWrite)
 
+        # self.gotoPlay()
+
     def gotoPlay(self):
 
         button = self.sender()
 
-        if button.objectName() == 'buttonplayGame1Run':
+        # if button.objectName() == 'buttonplayGame1Run':
 
-            self.canvas.setText(" ")
-            self.random_index = random.randint(0, len(self.Food_images)-1)
-            self.Index_images = self.random_index
-            self.canvas.setStyleSheet(
+        self.canvas.setText(" ")
+        self.random_index = random.randint(0, len(self.Food_images)-1)
+        self.Index_images = self.random_index
+        self.canvas.setStyleSheet(
                 "image : url("+":/prefijoNuevo/images/" + (self.Food_images[self.random_index]) + ")")
 
             # self.serial.write(self.message_le.text().encode())
@@ -392,7 +401,25 @@ class PlayGame1Window(QDialog):
 
     def gotoMain(self):
         self.canvas.setStyleSheet(" background-color: rgb(qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0 rgba(255, 235, 235, 206), stop:0.35 rgba(255, 188, 188, 80), stop:0.4 rgba(255, 162, 162, 80), stop:0.425 rgba(255, 132, 132, 156), stop:0.44 rgba(252, 128, 128, 80), stop:1 rgba(255, 255, 255, 0)), 53, 102);")
-        widget.setCurrentIndex(1)
+        #widget.setCurrentIndex(1)
+        widget.setCurrentWidget(game1window)
+
+    def threaded_wait(self, time_to_wait):
+            new_thread = threading.Thread(target=self.actual_wait, args=(time_to_wait,))
+            new_thread.start()
+    
+    def actual_wait(self, time_to_wait: int):
+            print(f"Sleeping for {int(time_to_wait)} seconds")
+
+            time_passed = 0
+    
+            for i in range(0, time_to_wait):
+                print(int( time_to_wait - time_passed))
+                time.sleep(1)
+                time_passed = time_passed + 1
+    
+            print("Done!")
+            self.DelayDone = True
 
     @QtCore.pyqtSlot()
     def receive(self):
@@ -433,13 +460,30 @@ class PlayGame1Window(QDialog):
                                                            str(self.NodeIdx)]['Feed_idx']
                             if self.FeedIdx == self.Index_images:
                                 print('Muy bien')
-                                self.sound_file = 'Alarm06.wav'
-                                self.sound = QtMultimedia.QSound(self.sound_file)
-                                self.sound.play()
+
+                                # set qmovie as label
+                                self.movie = QMovie("assets/images/cartoon_and_apple_fruits_dancing.gif")
+                                self.canvas.setMovie(self.movie)
+                                self.movie.start()
+                                #time.sleep(1)
+                                mixer.init()
+                                mixer.music.load('assets/sounds/Muy bien.mp3')
+                                mixer.music.play()
+                                self.threaded_wait(5)
+                                while(self.DelayDone==False):
+                                    pass
+                               # adding 2 seconds time delay
+                                self.canvas.setStyleSheet(" background-color: rgb(qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0 rgba(255, 235, 235, 206), stop:0.35 rgba(255, 188, 188, 80), stop:0.4 rgba(255, 162, 162, 80), stop:0.425 rgba(255, 132, 132, 156), stop:0.44 rgba(252, 128, 128, 80), stop:1 rgba(255, 255, 255, 0)), 53, 102);")
+                                #self.canvas.setText("SIGAMOS!!!")
+                                self.canvas.show()
+                                self.gotoPlay()
+
+                                
                     except IOError:
                         print('File not found, will create a new one.')
 
 
+        
 app = QApplication(sys.argv)
 widget = QtWidgets.QStackedWidget()
 mainwindow = MainWindow()

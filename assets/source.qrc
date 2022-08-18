@@ -1,5 +1,13 @@
 <RCC>
   <qresource prefix="prefijoNuevo">
+    <file>images/vegetable_playing_music.gif</file>
+    <file>images/love_hearts.gif</file>
+    <file>images/cartoon_fruits_dancing.gif</file>
+    <file>images/Happy_kids_jumping.gif</file>
+    <file>images/lion_jumping.gif</file>
+    <file>images/Bravo_minions.gif</file>
+    <file>images/kid_jumping.gif</file>
+    <file>images/cartoon_and_apple_fruits_dancing.gif</file>
     <file>images/game1_play.png</file>
     <file>images/main_menu_image.png</file>
     <file>images/game1_config.png</file>
