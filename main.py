@@ -11,12 +11,10 @@ from assets import source
 import json
 from palette import PaletteGrid, PaletteHorizontal, PaletteVertical
 from toggleButton import Switch
-import random, time, threading
+import random
+import time
+import threading
 from pygame import mixer
-
-
-
-
 
 
 class MainWindow(QDialog):
@@ -344,7 +342,7 @@ class PlayGame1Window(QDialog):
                    'Apple.png', 'Grain.png', 'Grass.png', 'Milk.png', 'Acorn.png', 'Worm.png']
     Index_images = 0
 
-    DelayDone= False
+    DelayDone = False
 
     def __init__(self):
         super(PlayGame1Window, self).__init__()
@@ -375,9 +373,9 @@ class PlayGame1Window(QDialog):
         self.random_index = random.randint(0, len(self.Food_images)-1)
         self.Index_images = self.random_index
         self.canvas.setStyleSheet(
-                "image : url("+":/prefijoNuevo/images/" + (self.Food_images[self.random_index]) + ")")
+            "image : url("+":/prefijoNuevo/images/" + (self.Food_images[self.random_index]) + ")")
 
-            # self.serial.write(self.message_le.text().encode())
+        # self.serial.write(self.message_le.text().encode())
 
         if button.objectName() == 'buttonplayGame1Backward':
 
@@ -401,25 +399,8 @@ class PlayGame1Window(QDialog):
 
     def gotoMain(self):
         self.canvas.setStyleSheet(" background-color: rgb(qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0 rgba(255, 235, 235, 206), stop:0.35 rgba(255, 188, 188, 80), stop:0.4 rgba(255, 162, 162, 80), stop:0.425 rgba(255, 132, 132, 156), stop:0.44 rgba(252, 128, 128, 80), stop:1 rgba(255, 255, 255, 0)), 53, 102);")
-        #widget.setCurrentIndex(1)
+        # widget.setCurrentIndex(1)
         widget.setCurrentWidget(game1window)
-
-    def threaded_wait(self, time_to_wait):
-            new_thread = threading.Thread(target=self.actual_wait, args=(time_to_wait,))
-            new_thread.start()
-    
-    def actual_wait(self, time_to_wait: int):
-            print(f"Sleeping for {int(time_to_wait)} seconds")
-
-            time_passed = 0
-    
-            for i in range(0, time_to_wait):
-                print(int( time_to_wait - time_passed))
-                time.sleep(1)
-                time_passed = time_passed + 1
-    
-            print("Done!")
-            self.DelayDone = True
 
     @QtCore.pyqtSlot()
     def receive(self):
@@ -459,31 +440,42 @@ class PlayGame1Window(QDialog):
                             self.FeedIdx = self.NodeConfig['Node' +
                                                            str(self.NodeIdx)]['Feed_idx']
                             if self.FeedIdx == self.Index_images:
-                                print('Muy bien')
-
+                                self.DataToTx = "#,CELL_PHONE,SET_COLOR," + self.NodeConfig['Node' +
+                                                                                              str(self.NodeIdx)]['Color'] + "," + self.list[4] + ",&"
+                                print(self.DataToTx)
+                                self.serial.write(self.DataToTx.encode())
                                 # set qmovie as label
-                                self.movie = QMovie("assets/images/cartoon_and_apple_fruits_dancing.gif")
-                                self.canvas.setMovie(self.movie)
+                                self.canvas.setStyleSheet(
+                                    " background-color: rgb(qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0 rgba(255, 235, 235, 206), stop:0.35 rgba(255, 188, 188, 80), stop:0.4 rgba(255, 162, 162, 80), stop:0.425 rgba(255, 132, 132, 156), stop:0.44 rgba(252, 128, 128, 80), stop:1 rgba(255, 255, 255, 0)), 53, 102);")
+                                self.imagebackground.setStyleSheet(
+                                    " background-color: rgb(qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0 rgba(255, 235, 235, 206), stop:0.35 rgba(255, 188, 188, 80), stop:0.4 rgba(255, 162, 162, 80), stop:0.425 rgba(255, 132, 132, 156), stop:0.44 rgba(252, 128, 128, 80), stop:1 rgba(255, 255, 255, 0)), 53, 102);")
+                                self.movie = QMovie(
+                                    "assets/images/cartoon_and_apple_fruits_dancing.gif")
+                                # self.canvas.setMovie(self.movie)
+                                self.imagebackground.setMovie(self.movie)
                                 self.movie.start()
-                                #time.sleep(1)
                                 mixer.init()
                                 mixer.music.load('assets/sounds/Muy bien.mp3')
                                 mixer.music.play()
-                                self.threaded_wait(5)
-                                while(self.DelayDone==False):
-                                    pass
-                               # adding 2 seconds time delay
-                                self.canvas.setStyleSheet(" background-color: rgb(qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0 rgba(255, 235, 235, 206), stop:0.35 rgba(255, 188, 188, 80), stop:0.4 rgba(255, 162, 162, 80), stop:0.425 rgba(255, 132, 132, 156), stop:0.44 rgba(252, 128, 128, 80), stop:1 rgba(255, 255, 255, 0)), 53, 102);")
-                                #self.canvas.setText("SIGAMOS!!!")
-                                self.canvas.show()
-                                self.gotoPlay()
+                               # adding 5 seconds time delay
+                                self.timer = QTimer()
+                                self.timer.timeout.connect(self.Continue)
+                                self.timer.start(2500)
 
-                                
                     except IOError:
                         print('File not found, will create a new one.')
 
+    def Continue(self):
+        self.timer.stop()
+        self.movie.stop()
+        # self.canvas.setStyleSheet(" background-color: rgb(qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0 rgba(255, 235, 235, 206), stop:0.35 rgba(255, 188, 188, 80), stop:0.4 rgba(255, 162, 162, 80), stop:0.425 rgba(255, 132, 132, 156), stop:0.44 rgba(252, 128, 128, 80), stop:1 rgba(255, 255, 255, 0)), 53, 102);")
+        # self.canvas.setText("SIGAMOS!!!")
+        self.imagebackground.setStyleSheet(
+            "image : url(:/prefijoNuevo/images/game1_play.png)")
+        self.canvas.show()
+        self.gotoPlay()
 
-        
+
 app = QApplication(sys.argv)
 widget = QtWidgets.QStackedWidget()
 mainwindow = MainWindow()
